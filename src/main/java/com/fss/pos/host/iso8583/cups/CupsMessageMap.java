@@ -1,0 +1,258 @@
+package com.fss.pos.host.iso8583.cups;
+import com.fss.pos.host.iso8583.cups.CupsField;
+
+public class CupsMessageMap extends CupsMessage8583 {
+	public CupsMessageMap() {
+	}
+
+	public byte[] pack() {
+		return super.pack(CUPSFIELDMAP);
+	}
+
+	public boolean unpack(String message) {
+		return super.unpack(message, CUPSFIELDMAP);
+	}
+
+	/**
+	 * For all fields, the format can be: AN (alphanumeric, EBCDIC) ANS
+	 * (alphanumeric/special characters, EBCDIC) B (binary value) BCD (numeric,
+	 * 4-bit BCD = unsigned packed) Bit string N (numeric, 1 byte per character)
+	 * indicated as 'T'
+	 * 
+	 * 
+	 * Fieldlength indicates length of the data if length is fixed non negative
+	 * value provided,zero indicates bit is not in use Fieldlength data type
+	 * indicates 'B' - binary compress,'H'- Ascii/Clear , 'T' - Integer Bitdatatype indicates, 'C' -  Clear form for Length
+	 * 'B' -binary , 'E' - EBCDIC Subelement indicates 'N' - No subelements ,
+	 * 'S' - Yes sublements available
+	 */
+
+	private static final CupsField CUPSFIELDMAP[] = {
+		new CupsField("F-1", 0, 'I', 'I', 'N'),     
+		new CupsField("F-2", -2, 'C', 'H', 'N'),
+		new CupsField("F-3", 6, 'H', 'H', 'N'),
+		new CupsField("F-4", 12, 'H', 'H', 'N'),
+		new CupsField("F-5", 12, 'H', 'H', 'N'),
+		new CupsField("F-6", 12, 'H', 'H', 'N'),
+		new CupsField("F-7", 10, 'H', 'H', 'N'),
+		new CupsField("F-8", 0, 'B', 'B', 'N'),
+		new CupsField("F-9", 8, 'H', 'H', 'N'),   
+		new CupsField("F-10",8, 'H', 'H', 'N'),
+		new CupsField("F-11", 6, 'H', 'H', 'N'),
+		new CupsField("F-12", 6, 'H', 'H', 'N'),
+		new CupsField("F-13", 4, 'H', 'H', 'N'),
+		new CupsField("F-14", 4, 'H', 'H', 'N'),
+		new CupsField("F-15", 4, 'H', 'H', 'N'),
+		new CupsField("F-16", 4, 'H', 'H', 'N'),
+		new CupsField("F-17", 0, 'H', 'H', 'N'),
+		new CupsField("F-18", 4, 'H', 'H', 'N'),
+		new CupsField("F-19", 3, 'H', 'H', 'N'),
+		new CupsField("F-20", 0, 'B', 'B', 'N'),
+		new CupsField("F-21", 0, 'B', 'B', 'N'),
+		new CupsField("F-22", 3, 'H', 'H', 'N'),
+		new CupsField("F-23", 3, 'H', 'H', 'N'),
+		new CupsField("F-24", 0, 'B', 'B', 'N'),
+		new CupsField("F-25", 2, 'H', 'H', 'N'),
+		new CupsField("F-26", 2, 'H', 'H', 'N'),
+		new CupsField("F-27", 0, 'B', 'B', 'N'),
+		new CupsField("F-28", 8, 'X', 'X', 'N'),
+		new CupsField("F-29", 0, 'B', 'B', 'N'),
+		new CupsField("F-30", 0, 'B', 'B', 'N'),
+		new CupsField("F-31", 0, 'B', 'B', 'N'),
+		new CupsField("F-32", -2, 'C', 'H', 'N'),
+		new CupsField("F-33", -2, 'C', 'H', 'N'),
+		new CupsField("F-34", 0, 'B', 'B', 'N'),
+		new CupsField("F-35", -2, 'C', 'H', 'N'),
+		new CupsField("F-36", -3, 'C', 'H', 'N'),
+		new CupsField("F-37", 12, 'H', 'H', 'N'),
+		new CupsField("F-38", 6, 'H', 'H', 'N'),
+		new CupsField("F-39", 2, 'H', 'H', 'N'),
+		new CupsField("F-40", 0, 'B', 'B', 'N'),
+		new CupsField("F-41", 8, 'H', 'H', 'N'),
+		new CupsField("F-42", 15, 'H', 'H', 'N'),
+		new CupsField("F-43", 40, 'H', 'H', 'N'),
+		new CupsField("F-44", -2, 'C', 'H', 'N'),
+		new CupsField("F-45", -2, 'C', 'H', 'N'),
+		new CupsField("F-46", 0, 'B', 'B', 'N'),
+		new CupsField("F-47", 0, 'B', 'B', 'N'),
+		new CupsField("F-48", -3, 'C', 'H', 'N'),
+		new CupsField("F-49", 3, 'C', 'H', 'N'),
+		new CupsField("F-50", 3, 'H', 'H', 'N'),
+		new CupsField("F-51", 3, 'H', 'H', 'N'),
+		new CupsField("F-52", 8, 'B', 'H', 'N'),
+		new CupsField("F-53", 16, 'H', 'H', 'N'),
+		new CupsField("F-54", -3, 'C', 'H', 'N'),
+		new CupsField("F-55", -3, 'C', 'B', 'N'),		
+		new CupsField("F-56", -3, 'B', 'B', 'N'),
+		new CupsField("F-57", -3, 'B', 'B', 'N'),
+		new CupsField("F-58", 0, 'B', 'B', 'N'),
+		new CupsField("F-59", -3, 'C', 'B', 'N'),
+		new CupsField("F-60", -3, 'C', 'H', 'N'),
+		new CupsField("F-61", -3, 'C', 'B', 'S'),
+		new CupsField("F-62", -3, 'C', 'H', 'N'),
+		new CupsField("F-63", -3, 'C', 'B', 'N'),
+		new CupsField("F-64", 0, 'B', 'B', 'N'),
+		new CupsField("F-65", 0, 'B', 'B', 'N'),
+		new CupsField("F-66", 0, 'B', 'B', 'N'),
+		new CupsField("F-67", 0, 'B', 'B', 'N'),
+		new CupsField("F-68", 0, 'B', 'B', 'N'),
+		new CupsField("F-69", 0, 'B', 'B', 'N'),
+		new CupsField("F-70", 3, 'H', 'H', 'N'),     
+		new CupsField("F-71", 0, 'B', 'B', 'N'),
+		new CupsField("F-72", 0, 'B', 'B', 'N'),
+		new CupsField("F-73", 0, 'B', 'B', 'N'),
+		new CupsField("F-74", 0, 'B', 'B', 'N'),
+		new CupsField("F-75", 0, 'B', 'B', 'N'),
+		new CupsField("F-76", 0, 'B', 'B', 'N'),
+		new CupsField("F-77", 0, 'B', 'B', 'N'),
+		new CupsField("F-78", 0, 'B', 'B', 'N'),
+		new CupsField("F-79", 0, 'B', 'B', 'N'),
+		new CupsField("F-80", 0, 'B', 'B', 'N'),
+		new CupsField("F-81", 0, 'B', 'B', 'N'),
+		new CupsField("F-82", 0, 'B', 'B', 'N'),
+		new CupsField("F-83", 0, 'B', 'B', 'N'),
+		new CupsField("F-84", 0, 'B', 'B', 'N'),
+		new CupsField("F-85", 0, 'B', 'B', 'N'),
+		new CupsField("F-86", 0, 'B', 'B', 'N'),
+		new CupsField("F-87", 0, 'B', 'B', 'N'),
+		new CupsField("F-88", 0, 'B', 'B', 'N'),
+		new CupsField("F-89", 0, 'B', 'B', 'N'),
+		new CupsField("F-90", 42, 'H','H', 'N'),
+		new CupsField("F-91", 0, 'B', 'B', 'N'),
+		new CupsField("F-92", 0, 'B', 'B', 'N'),
+		new CupsField("F-93", 0, 'B', 'B', 'N'),
+		new CupsField("F-94", 0, 'B', 'B', 'N'),
+		new CupsField("F-95", 0, 'B', 'B', 'N'),
+		new CupsField("F-96", 8, 'B', 'B', 'N'),
+		new CupsField("F-97", 0, 'B', 'B', 'N'),
+		new CupsField("F-98", 0, 'B', 'B', 'N'),
+		new CupsField("F-99", 0, 'B', 'B', 'N'),
+		new CupsField("F-100", -2,'C', 'H', 'N'),
+		new CupsField("F-101", 0, 'B', 'B', 'N'),
+		new CupsField("F-102", -2,'C', 'B', 'N'),
+		new CupsField("F-103", 0, 'B', 'B', 'N'),
+		new CupsField("F-104", -3, 'B', 'B', 'N'),
+		new CupsField("F-105", 0, 'B', 'B', 'N'),
+		new CupsField("F-106", 0, 'B', 'B', 'N'),
+		new CupsField("F-107", 0, 'B', 'B', 'N'),
+		new CupsField("F-108", 0, 'B', 'B', 'N'),
+		new CupsField("F-109", 0, 'B', 'B', 'N'),
+		new CupsField("F-110", 0, 'B', 'B', 'N'),
+		new CupsField("F-111", 0, 'B', 'B', 'N'),
+		new CupsField("F-112", 0, 'B', 'B', 'N'),
+		new CupsField("F-113", 0, 'B', 'B', 'N'),
+		new CupsField("F-114", 0, 'B', 'B', 'N'),
+		new CupsField("F-115", 0, 'B', 'B', 'N'),
+		new CupsField("F-116", 0, 'B', 'B', 'N'),
+		new CupsField("F-117", -3, 'C', 'B', 'N'),
+		new CupsField("F-118", 0, 'B', 'B', 'N'),
+		new CupsField("F-119", 0, 'B', 'B', 'N'),
+		new CupsField("F-120", 0, 'B', 'B', 'N'),
+		new CupsField("F-121", -3, 'C', 'H', 'N'),
+		new CupsField("F-122", -3, 'B', 'B', 'N'),
+		new CupsField("F-123", -3, 'C', 'B', 'N'),
+		new CupsField("F-124", 0, 'B', 'B', 'N'),
+		new CupsField("F-125", -3, 'C', 'B', 'N'),
+		new CupsField("F-126", 0, 'B', 'B', 'N'),
+		new CupsField("F-127", 0, 'B', 'B', 'N'),
+		new CupsField("F-128", 8, 'B', 'B', 'N'),
+		new CupsField("F-129", 0, 'B', 'B', 'N'),
+		new CupsField("F-130", 0, 'B', 'B', 'N'),
+		new CupsField("F-131", 0, 'B', 'B', 'N'),
+		new CupsField("F-132", 0, 'B', 'B', 'N'),
+		new CupsField("F-133", 0, 'B', 'B', 'N'),
+		new CupsField("F-134", 0, 'B', 'B', 'N'),
+		new CupsField("F-135", 0, 'B', 'B', 'N'),
+		new CupsField("F-136", 0, 'B', 'B', 'N'),
+		new CupsField("F-137", 0, 'B', 'B', 'N'),
+		new CupsField("F-138", 0, 'B', 'B', 'N'),
+		new CupsField("F-139", 0, 'B', 'B', 'N'),
+		new CupsField("F-140", 0, 'B', 'B', 'N'),
+		new CupsField("F-141", 0, 'B', 'B', 'N'),
+		new CupsField("F-142", 0, 'B', 'B', 'N'),
+		new CupsField("F-143", 0, 'B', 'B', 'N'),
+		new CupsField("F-144", 0, 'B', 'B', 'N'),
+		new CupsField("F-145", 0, 'B', 'B', 'N'),
+		new CupsField("F-146", 0, 'B', 'B', 'N'),
+		new CupsField("F-147", 0, 'B', 'B', 'N'),
+		new CupsField("F-148", 0, 'B', 'B', 'N'),
+		new CupsField("F-149", 0, 'B', 'B', 'N'),
+		new CupsField("F-150", 0, 'B', 'B', 'N'),
+		new CupsField("F-151", 0, 'B', 'B', 'N'),
+		new CupsField("F-152", 0, 'B', 'B', 'N'),
+		new CupsField("F-153", 0, 'B', 'B', 'N'),
+		new CupsField("F-154", 0, 'B', 'B', 'N'),
+		new CupsField("F-155", 0, 'B', 'B', 'N'),
+		new CupsField("F-156", 0, 'B', 'B', 'N'),
+		new CupsField("F-157", 0, 'B', 'B', 'N'),
+		new CupsField("F-158", 0, 'B', 'B', 'N'),
+		new CupsField("F-159", 0, 'B', 'B', 'N'),
+		new CupsField("F-160", 0, 'B', 'B', 'N'),
+		new CupsField("F-161", 0, 'B', 'B', 'N'),
+		new CupsField("F-162", 0, 'B', 'B', 'N'),
+		new CupsField("F-163", 0, 'B', 'B', 'N'),
+		new CupsField("F-164", 0, 'B', 'B', 'N'),
+		new CupsField("F-165", 0, 'B', 'B', 'N'),
+		new CupsField("F-166", 0, 'B', 'B', 'N'),
+		new CupsField("F-167", 0, 'B', 'B', 'N'),
+		new CupsField("F-168", 0, 'B', 'B', 'N'),
+		new CupsField("F-169", 0, 'B', 'B', 'N'),
+		new CupsField("F-170", 0, 'B', 'B', 'N'),
+		new CupsField("F-171", 0, 'B', 'B', 'N'),
+		new CupsField("F-172", 0, 'B', 'B', 'N'),
+		new CupsField("F-173", 0, 'B', 'B', 'N'),
+		new CupsField("F-174", 0, 'B', 'B', 'N'),
+		new CupsField("F-175", 0, 'B', 'B', 'N'),
+		new CupsField("F-176", 0, 'B', 'B', 'N'),
+		new CupsField("F-177", 0, 'B', 'B', 'N'),
+		new CupsField("F-178", 0, 'B', 'B', 'N'),
+		new CupsField("F-179", 0, 'B', 'B', 'N'),
+		new CupsField("F-180", 0, 'B', 'B', 'N'),
+		new CupsField("F-181", 0, 'B', 'B', 'N'),
+		new CupsField("F-182", 0, 'B', 'B', 'N'),
+		new CupsField("F-183", 0, 'B', 'B', 'N'),
+		new CupsField("F-184", 0, 'B', 'B', 'N'),
+		new CupsField("F-185", 0, 'B', 'B', 'N'),
+		new CupsField("F-186", 0, 'B', 'B', 'N'),
+		new CupsField("F-187", 0, 'B', 'B', 'N'),
+		new CupsField("F-188", 0, 'B', 'B', 'N'),
+		new CupsField("F-189", 0, 'B', 'B', 'N'),
+		new CupsField("F-190", 0, 'B', 'B', 'N'),
+		new CupsField("F-191", 0, 'B', 'B', 'N'),
+		new CupsField("F-192", 0, 'B', 'B', 'N'),
+
+
+	};
+
+
+	public static final CupsField CUPSFIELDMAP60[] = {
+
+		new CupsField("S-60.1", 4, 'H', 'H', 'N'),   
+		new CupsField("S-60.2", 11, 'H', 'H', 'N'),  
+		new CupsField("S-60.3", 15, 'H', 'H', 'N'), 
+
+		
+	};
+
+	public static final CupsField CUPSFIELDMAP61[] = {
+
+		new CupsField("S-61.1", 22, 'N', 'E', 'N'),   
+		new CupsField("S-61.2", 1, 'N', 'T', 'N'),   
+		new CupsField("S-61.3", 4, 'N', 'E', 'N'),  
+		new CupsField("S-61.4", 7, 'N', 'E', 'N'),   
+		new CupsField("S-61.5", 1, 'N', 'T', 'N'),   
+		new CupsField("S-61.6", 1, 'N', 'E', 'N'),  
+	};
+
+
+	public static final CupsField CUPSFIELDMAP90[] = {
+
+		new CupsField("S-90.1", 4, 'H', 'H', 'N'),   
+		new CupsField("S-90.2", 6, 'H', 'H', 'N'),   
+		new CupsField("S-90.3", 4, 'H', 'H', 'N'),  
+		new CupsField("S-90.4", 11, 'C', 'H', 'N'),   
+		new CupsField("S-90.5", 11, 'C', 'H', 'N'),   
+	};
+
+}
+

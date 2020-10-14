@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="WARN" >
+ 
+    <!-- Logging Properties Test-->
+    <Properties>
+        <Property name="LOG_PATTERN">%d{dd:MM:yyyy HH:mm:ss:SSS} : %m %n</Property>
+        <Property name="APP_LOG_ROOT">D://PoSability//Logs//</Property>
+        <!--<Property name="APP_LOG_ROOT">/home/f11070/PoSability/Product/logs/Server/</Property>-->
+        <property name="filePattern">${date:dd-MM-yyyy}</property>
+    </Properties>
+     
+    <Appenders>
+     
+        <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+         
+         
+        <RollingFile name="DEBUG" fileName="${APP_LOG_ROOT}/Debug.log.${filePattern}.log"
+            filePattern="${APP_LOG_ROOT}/Debug.log.%d{dd-MM-yyyy}.%i.log">
+            
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="2 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+         
+        <RollingFile name="FSSCONNECT" fileName="${APP_LOG_ROOT}/FssConnect.log.${filePattern}.log"
+            filePattern="${APP_LOG_ROOT}/FssConnect.log.%d{dd-MM-yyyy}.%i.log" >
+           <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="2 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+        
+        <RollingFile name="OUTPUT" fileName="${APP_LOG_ROOT}/Output.log.${filePattern}.log"
+            filePattern="${APP_LOG_ROOT}/Output.log.%d{dd-MM-yyyy}.%i.log" >
+           
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="2 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+        
+        
+        
+         
+        <RollingFile name="ERROR" fileName="${APP_LOG_ROOT}/Error.log.${filePattern}.log"
+            filePattern="${APP_LOG_ROOT}/Error.log.%d{dd-MM-yyyy}.%i.log" >
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="2 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+         
+        
+         
+    </Appenders>
+ 
+    <Loggers>
+     
+        <Logger name="com.src.debug" additivity="false" level="ALL">
+            <AppenderRef ref="DEBUG" />  
+        </Logger>
+        
+        <Logger name="com.src.error" additivity="false" level="error">
+            <AppenderRef ref="ERROR" />  
+        </Logger>
+        
+        <Logger name="com.src.output" additivity="false" level="ALL">
+            <AppenderRef ref="OUTPUT" />  
+        </Logger>
+        
+        <Logger name="com.src.fssc" additivity="false" level="info">
+            <AppenderRef ref="FSSCONNECT" />  
+        </Logger>
+                 
+        <Root level="warn">
+            <AppenderRef ref="Console"/>
+        </Root>
+ 
+    </Loggers>
+ 
+</Configuration>
+
+<!--<?xml version="1.0" encoding="UTF-8" ?>
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="ERROR"
+		class="com.fss.commons.utils.CompositeRollingAppender">
+		<param name="File" value="D://POSABILITY//Logs//Error.log" />
+		<param name="DatePattern" value="'.'dd-MM-yyyy" />
+		<param name="MaxFileSize" value="2MB" />
+		<param name="MaxSizeRollBackups" value="100" />
+		<param name="staticLogFileName" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd:MM:yyyy HH:mm:ss:SSS} : %m %n" />
+		</layout>
+	</appender>
+
+	<appender name="OUTPUT"
+		class="com.fss.commons.utils.CompositeRollingAppender">
+		<param name="File" value='D://POSABILITY//Logs//Output.log' />
+		<param name="DatePattern" value="'.'dd-MM-yyyy" />
+		<param name="MaxFileSize" value="2MB" />
+		<param name="MaxSizeRollBackups" value="100" />
+		<param name="staticLogFileName" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd:MM:yyyy HH:mm:ss:SSS} : %m %n" />
+		</layout>
+	</appender>
+
+	<appender name="DEBUG"
+		class="com.fss.commons.utils.CompositeRollingAppender">
+		<param name="File" value='D://POSABILITY//Logs//Debug.log' />
+		<param name="DatePattern" value="'.'dd-MM-yyyy" />
+		<param name="MaxFileSize" value="2MB" />
+		<param name="MaxSizeRollBackups" value="100" />
+		<param name="staticLogFileName" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd:MM:yyyy HH:mm:ss:SSS} : %m %n" />
+		</layout>
+	</appender>
+
+	<appender name="FSSCONNECT"
+		class="com.fss.commons.utils.CompositeRollingAppender">
+		<param name="File" value='D://POSABILITY//Logs//FssConnect.log' />
+		<param name="DatePattern" value="'.'dd-MM-yyyy" />
+		<param name="MaxFileSize" value="2MB" />
+		<param name="MaxSizeRollBackups" value="100" />
+		<param name="staticLogFileName" value="false" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd:MM:yyyy HH:mm:ss:SSS} : %m %n" />
+		</layout>
+	</appender>
+
+	<logger name="com.src.error" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="ERROR" />
+	</logger>
+
+	<logger name="com.src.output" additivity="false">
+		<level value="ALL" />
+		<appender-ref ref="OUTPUT" />
+	</logger>
+
+	<logger name="com.src.debug" additivity="false">
+		<level value="ALL" />
+		<appender-ref ref="DEBUG" />
+	</logger>
+
+
+	<logger name="com.src.fssc" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="FSSCONNECT" />
+	</logger>
+
+	<root>
+		<level value="WARN" />
+	</root>
+
+</log4j:configuration>-->
+
+
+
